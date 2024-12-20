@@ -3,15 +3,14 @@
 class Contact
 {
 private:
-	char phone_number[20];
-	char location[20];
-	char country[20];
+    char* phone_number;
+    char* location;
+    char* country;
 
 public:
-	Contact(const char* phone_number, const char* location, const char* country);
-	~Contact();
+    Contact(const char* phone_number, const char* location, const char* country);
+    ~Contact();
 
-	void copy(char* line, const char* link, int size);
-	void show() const;
+    void copy(char*& line, const char* link);
+    void show() const;
 };
-
