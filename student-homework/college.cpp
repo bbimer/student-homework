@@ -1,23 +1,28 @@
 #include "college.h"
 #include <iostream>
 
-void College::copy(char* line, const char* link, int size) {
-	if (!link)
+void College::copy(char*& line, const char* link) {
+	delete[] line;
+	if (link)
 	{
-		line[0] = '\0';
-		return;
+		size_t length = std::strlen(link);
+		line = new char[length + 1];
+		int i = 0;
+		for (; i < length; ++i)
+		{
+			line[i] = link[i];
+		}
+		line[i] = '\0';
 	}
-
-	int i = 0;
-	for (; i < size - 1 && link[i] != '\0'; ++i) {
-		line[i] = link[i];
+	else
+	{
+		line = nullptr;
 	}
-	line[i] = '\0';
 }
 
 College::College(const char* clg_contacts, const char* clg_name) {
-	copy(this->clg_contacts, clg_contacts, sizeof(this->clg_contacts));
-	copy(this->clg_name, clg_name, sizeof(this->clg_name));
+	copy(this->clg_contacts, clg_contacts);
+	copy(this->clg_name, clg_name);
 }
 
 College::~College() {}

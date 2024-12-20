@@ -3,14 +3,14 @@
 class College
 {
 private:
-	char clg_contacts[30];
-	char clg_name[30];
+	char* clg_contacts;
+	char* clg_name;
 
 public:
 	College(const char* clg_contacts, const char* clg_name);
 	~College();
 
-	void copy(char* line, const char* link, int size);
+	void copy(char*& line, const char* link);
 	void show() const;
 };
 
