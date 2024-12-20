@@ -20,7 +20,8 @@ void College::copy(char*& line, const char* link) {
 	}
 }
 
-College::College(const char* clg_contacts, const char* clg_name) {
+College::College(const char* clg_contacts, const char* clg_name) 
+	: clg_contacts(nullptr), clg_name(nullptr) {
 	copy(this->clg_contacts, clg_contacts);
 	copy(this->clg_name, clg_name);
 }

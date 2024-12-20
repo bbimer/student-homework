@@ -1,25 +1,31 @@
 #include "student.h"
 #include <iostream>
 
-void Student::copy(char* line, const char* link, int size) {
-	if (!link)
+void Student::copy(char*& line, const char* link) {
+	delete[] line;
+	if (link)
 	{
-		line[0] = '\0';
-		return;
+		size_t length = std::strlen(link);
+		line = new char[length + 1];
+		int i = 0;
+		for (; i < length; ++i)
+		{
+			line[i] = link[i];
+		}
+		line[i] = '\0';
 	}
-
-	int i = 0;
-	for (; i < size - 1 && link[i] != '\0'; ++i) {
-		line[i] = link[i];
+	else
+	{
+		line = nullptr;
 	}
-	line[i] = '\0';
 }
 
-Student::Student(const char* pib, const char* dateOfBirth, const char* contacts, const char* college_info) {
-	copy(this->pib, pib, sizeof(this->pib));
-	copy(this->dateOfBirth, dateOfBirth, sizeof(this->dateOfBirth));
-	copy(this->contacts, contacts, sizeof(this->contacts));
-	copy(this->college_info, college_info, sizeof(this->college_info));
+Student::Student(const char* pib, const char* dateOfBirth, const char* contacts, const char* college_info)
+	: pib(nullptr), dateOfBirth(nullptr), contacts(nullptr), college_info(nullptr) {
+	copy(this->pib, pib);
+	copy(this->dateOfBirth, dateOfBirth);
+	copy(this->contacts, contacts);
+	copy(this->college_info, college_info);
 }
 
 Student::~Student() {}

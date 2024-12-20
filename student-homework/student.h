@@ -3,16 +3,16 @@
 class Student
 {
 private:
-	char pib[20];
-	char dateOfBirth[20];
-	char contacts[20];
-	char college_info[20];
+	char* pib;
+	char* dateOfBirth;
+	char* contacts;
+	char* college_info;
 
 public:
 	Student(const char* pib, const char* dateOfBirth, const char* contacts, const char* college_info);
 	~Student();
 
-	void copy(char* line, const char* link, int size);
+	void copy(char*& line, const char* link);
 	void show() const;
 };
 
