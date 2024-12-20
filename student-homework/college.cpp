@@ -24,7 +24,7 @@ College::~College() {}
 
 void College::show() const {
 	std::cout << "college contact: " << clg_contacts << std::endl;
-	std::cout << "college name:\t" << clg_name << std::endl;
+	std::cout << "college name:\t " << clg_name << std::endl;
 	std::cout << "----------------------" << std::endl;
 }
 
