@@ -111,16 +111,20 @@ Student& Student::operator=(Student&& other) noexcept {
 
 	return *this;
 }
-						
+		
+const char* Student::empty(const char* value) const {
+	return (value && value[0] != '\0') ? value : "none";
+}
+
 void Student::show() const {
 	std::cout << "Student" << std::endl;
-	std::cout << "student PIB:\t\t" << pib << std::endl;
-	std::cout << "date of Birth:\t\t" << dateOfBirth << std::endl;
-	std::cout << "phone Number:\t\t" << phone_number << std::endl;
-	std::cout << "city:\t\t\t" << city << std::endl;
-	std::cout << "street:\t\t\t" << street << std::endl;
-	std::cout << "house:\t\t\t" << house << std::endl;
-	std::cout << "college Info:\t\t" << college_info << std::endl;
+	std::cout << "student PIB:\t\t" << empty(pib) << std::endl;
+	std::cout << "date of Birth:\t\t" << empty(dateOfBirth) << std::endl;
+	std::cout << "phone Number:\t\t" << empty(phone_number) << std::endl;
+	std::cout << "city:\t\t\t" << empty(city) << std::endl;
+	std::cout << "street:\t\t\t" << empty(street) << std::endl;
+	std::cout << "house:\t\t\t" << empty(house) << std::endl;
+	std::cout << "college Info:\t\t" << empty(college_info) << std::endl;
 	std::cout << "----------------------" << std::endl;
 }
 

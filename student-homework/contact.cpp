@@ -94,13 +94,17 @@ Contact& Contact::operator=(Contact&& other) noexcept {
 	return *this;
 }
 
+const char* Contact::empty(const char* value) const {
+	return (value && value[0] != '\0') ? value : "none";
+}
+
 void Contact::show() const {
 	std::cout << "Contacts" << std::endl;
-	std::cout << "phone number:\t" << phone_number << std::endl;
-	std::cout << "city:\t\t" << city << std::endl;
-	std::cout << "street:\t\t" << street << std::endl;
-	std::cout << "house:\t\t" << house << std::endl;
-	std::cout << "country:\t" << country << std::endl;
+	std::cout << "phone number:\t" << empty(phone_number) << std::endl;
+	std::cout << "city:\t\t" << empty(city) << std::endl;
+	std::cout << "street:\t\t" << empty(street) << std::endl;
+	std::cout << "house:\t\t" << empty(house) << std::endl;
+	std::cout << "country:\t" << empty(country) << std::endl;
 	std::cout << "----------------------" << std::endl;
 }
 

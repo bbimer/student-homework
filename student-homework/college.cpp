@@ -86,12 +86,16 @@ College& College::operator=(College&& other) noexcept {
 	return *this;
 }
 
+const char* College::empty(const char* value) const {
+	return (value && value[0] != '\0') ? value : "none";
+}
+
 void College::show() const {
 	std::cout << "College" << std::endl;
-	std::cout << "college phone number: " << clg_phone_number << std::endl;
-	std::cout << "college name:\t " << clg_name << std::endl;
-	std::cout << "college city:\t " << clg_city << std::endl;
-	std::cout << "college street:\t " << clg_street << std::endl;
+	std::cout << "college phone number: " << empty(clg_phone_number) << std::endl;
+	std::cout << "college name:\t " << empty(clg_name) << std::endl;
+	std::cout << "college city:\t " << empty(clg_city) << std::endl;
+	std::cout << "college street:\t " << empty(clg_street) << std::endl;
 	std::cout << "----------------------" << std::endl;
 }
 

@@ -9,6 +9,7 @@ private:
     char* house;
     char* country;
 
+    const char* empty(const char* value) const;
 public:
     Contact(const char* phone_number, const char* city, const char* street, const char* house, const char* country);
     Contact(const Contact& other);
