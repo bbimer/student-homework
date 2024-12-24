@@ -4,11 +4,13 @@ class Contact
 {
 private:
     char* phone_number;
-    char* location;
+    char* city;
+    char* street;
+    char* house;
     char* country;
 
 public:
-    Contact(const char* phone_number, const char* location, const char* country);
+    Contact(const char* phone_number, const char* city, const char* street, const char* house, const char* country);
     Contact(const Contact& other);
     Contact(Contact&& move) noexcept;
     ~Contact();

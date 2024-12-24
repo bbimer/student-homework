@@ -20,30 +20,38 @@ void Contact::copy(char*& line, const char* link) {
 	}
 }
 
-Contact::Contact(const char* phone_number, const char* location, const char* country)
-	: phone_number(nullptr), location(nullptr), country(nullptr) {
+Contact::Contact(const char* phone_number, const char* city, const char* street, const char* house, const char* country)
+	: phone_number(nullptr), city(nullptr), street(nullptr), house(nullptr), country(nullptr) {
 	copy(this->phone_number, phone_number);
-	copy(this->location, location);
+	copy(this->city, city);
+	copy(this->street, street);
+	copy(this->house, house);
 	copy(this->country, country);
 }
 
 Contact::Contact(const Contact& other)
-	: phone_number(nullptr), location(nullptr), country(nullptr) {
+	: phone_number(nullptr), city(nullptr), street(nullptr), country(nullptr) {
 	copy(this->phone_number, phone_number);
-	copy(this->location, location);
+	copy(this->city, city);
+	copy(this->street, street);
+	copy(this->house, house);
 	copy(this->country, country);
 }
 
 Contact::Contact(Contact&& move) noexcept
-	: phone_number(nullptr), location(nullptr), country(nullptr) {
+	: phone_number(nullptr), city(nullptr), street(nullptr), country(nullptr) {
 	move.phone_number = nullptr;
-	move.location = nullptr;
+	move.city = nullptr;
+	move.street = nullptr;
+	move.house = nullptr;
 	move.country = nullptr;
 }
 
 Contact::~Contact() {
 	delete[] phone_number;
-	delete[] location;
+	delete[] city;
+	delete[] street;
+	delete[] house;
 	delete[] country;
 }
 
@@ -52,7 +60,9 @@ Contact& Contact::operator=(const Contact& other) {
 
 	Contact T(other);
 	std::swap(phone_number, T.phone_number);
-	std::swap(location, T.location);
+	std::swap(city, T.city);
+	std::swap(street, T.street);
+	std::swap(house, T.house);
 	std::swap(country, T.country);
 
 	return *this;
@@ -62,25 +72,34 @@ Contact& Contact::operator=(Contact&& other) noexcept {
 	if (this == &other) {
 
 		delete[] phone_number;
-		delete[] location;
+		delete[] city;
+		delete[] street;
+		delete[] house;
 		delete[] country;
 
 
 		phone_number = other.phone_number;
-		location = other.location;
+		city = other.city;
+		street = other.street;
+		house = other.house;
 		country = other.country;
 
 
 		other.phone_number = nullptr;
-		other.location = nullptr;
+		other.city = nullptr;
+		other.street = nullptr;
+		other.house = nullptr;
 		other.country = nullptr;
 	}
 	return *this;
 }
 
 void Contact::show() const {
+	std::cout << "Contacts" << std::endl;
 	std::cout << "phone number:\t" << phone_number << std::endl;
-	std::cout << "location:\t" << location << std::endl;
+	std::cout << "city:\t\t" << city << std::endl;
+	std::cout << "street:\t\t" << street << std::endl;
+	std::cout << "house:\t\t" << house << std::endl;
 	std::cout << "country:\t" << country << std::endl;
 	std::cout << "----------------------" << std::endl;
 }

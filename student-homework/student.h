@@ -5,11 +5,15 @@ class Student
 private:
 	char* pib;
 	char* dateOfBirth;
-	char* contacts;
+	char* phone_number;
+	char* city;
+	char* street;
+	char* house;
 	char* college_info;
 
 public:
-	Student(const char* pib, const char* dateOfBirth, const char* contacts, const char* college_info);
+	Student(const char* pib, const char* dateOfBirth, const char* phone_number, const char* city,
+		const char* street, const char* house, const char* college_info);
 	Student(const Student& other);
 	Student(Student&& move) noexcept;
 	~Student();
