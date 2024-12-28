@@ -30,16 +30,16 @@ Contact::Contact(const char* phone_number, const char* city, const char* street,
 }
 
 Contact::Contact(const Contact& other)
-	: phone_number(nullptr), city(nullptr), street(nullptr), country(nullptr) {
-	copy(this->phone_number, phone_number);
-	copy(this->city, city);
-	copy(this->street, street);
-	copy(this->house, house);
-	copy(this->country, country);
+	: phone_number(nullptr), city(nullptr), street(nullptr), house(nullptr), country(nullptr) {
+	copy(this->phone_number, other.phone_number);
+	copy(this->city, other.city);
+	copy(this->street, other.street);
+	copy(this->house, other.house);
+	copy(this->country, other.country);
 }
 
 Contact::Contact(Contact&& move) noexcept
-	: phone_number(nullptr), city(nullptr), street(nullptr), country(nullptr) {
+	: phone_number(move.phone_number), city(move.city), street(move.street), house(move.house), country(move.country) {
 	move.phone_number = nullptr;
 	move.city = nullptr;
 	move.street = nullptr;
@@ -99,13 +99,12 @@ const char* Contact::empty(const char* value) const {
 }
 
 void Contact::show() const {
-	std::cout << "Contacts" << std::endl;
+	std::cout << "[3] Contacts" << std::endl;
 	std::cout << "phone number:\t" << empty(phone_number) << std::endl;
 	std::cout << "city:\t\t" << empty(city) << std::endl;
 	std::cout << "street:\t\t" << empty(street) << std::endl;
 	std::cout << "house:\t\t" << empty(house) << std::endl;
 	std::cout << "country:\t" << empty(country) << std::endl;
-	std::cout << "----------------------" << std::endl;
 }
 
 

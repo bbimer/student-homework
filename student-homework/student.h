@@ -1,22 +1,21 @@
 #pragma once
 
+#include "college.h"
+#include "contact.h"
+
 class Student
 {
 protected:
 
 private:
+	College college;
+	Contact contact;
 	char* pib;
 	char* dateOfBirth;
-	char* phone_number;
-	char* city;
-	char* street;
-	char* house;
-	char* college_info;
 
 	const char* empty(const char* value) const;
 public:
-	Student(const char* pib, const char* dateOfBirth, const char* phone_number, const char* city,
-		const char* street, const char* house, const char* college_info);
+	Student(const char* pib, const char* dateOfBirth, const College& college, const Contact& contact);
 	Student(const Student& other);
 	Student(Student&& move) noexcept;
 	~Student();

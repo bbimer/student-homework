@@ -30,14 +30,14 @@ College::College(const char* clg_phone_number, const char* clg_name, const char*
 
 College::College(const College& other)
 	: clg_phone_number(nullptr), clg_name(nullptr), clg_city(nullptr), clg_street(nullptr) {
-	copy(this->clg_phone_number, clg_phone_number);
-	copy(this->clg_name, clg_name);
-	copy(this->clg_city, clg_city);
-	copy(this->clg_street, clg_street);
+	copy(this->clg_phone_number, other.clg_phone_number);
+	copy(this->clg_name, other.clg_name);
+	copy(this->clg_city, other.clg_city);
+	copy(this->clg_street, other.clg_street);
 }
 
 College::College(College&& move) noexcept
-	: clg_phone_number(nullptr), clg_name(nullptr), clg_city(nullptr), clg_street(nullptr) {
+	: clg_phone_number(move.clg_phone_number), clg_name(move.clg_name), clg_city(move.clg_city), clg_street(move.clg_street) {
 	move.clg_phone_number = nullptr;
 	move.clg_name = nullptr;
 	move.clg_city = nullptr;
@@ -91,12 +91,11 @@ const char* College::empty(const char* value) const {
 }
 
 void College::show() const {
-	std::cout << "College" << std::endl;
+	std::cout << "[2] College" << std::endl;
 	std::cout << "college phone number: " << empty(clg_phone_number) << std::endl;
 	std::cout << "college name:\t " << empty(clg_name) << std::endl;
 	std::cout << "college city:\t " << empty(clg_city) << std::endl;
 	std::cout << "college street:\t " << empty(clg_street) << std::endl;
-	std::cout << "----------------------" << std::endl;
 }
 
 
