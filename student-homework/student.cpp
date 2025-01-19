@@ -1,5 +1,6 @@
 #include "student.h"
 #include <iostream>
+#include <fstream>
 
 void Student::copy(char*& line, const char* link) {
 	delete[] line;
@@ -79,5 +80,30 @@ void Student::show() const {
 	college.show();
 	contact.show();
 }
+
+void Student::saveToFile(std::ofstream& outFile) const {
+	if (!outFile.is_open()) {
+		std::cerr << "Error - file is not open for writing." << std::endl;
+		return;
+	}
+
+	auto saveString = [&outFile](const char* str) {
+		size_t length = str ? std::strlen(str) : 0;
+		outFile.write(reinterpret_cast<const char*>(&length), sizeof(length));
+		if (length > 0) {
+			outFile.write(str, length);
+		}
+		};
+
+	saveString(pib);
+	saveString(dateOfBirth);
+
+	college.saveToFile(outFile);
+	contact.saveToFile(outFile);
+}
+
+
+
+
 
 

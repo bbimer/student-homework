@@ -1,5 +1,6 @@
 #include "college.h"
 #include <iostream>
+#include <fstream>
 
 void College::copy(char*& line, const char* link) {
 	delete[] line;
@@ -97,5 +98,29 @@ void College::show() const {
 	std::cout << "college city:\t " << empty(clg_city) << std::endl;
 	std::cout << "college street:\t " << empty(clg_street) << std::endl;
 }
+
+void College::saveToFile(std::ofstream& outFile) const {
+	if (!outFile.is_open()) {
+		std::cerr << "Error - file is not open for writing." << std::endl;
+		return;
+	}
+
+	auto saveString = [&outFile](const char* str) {
+		size_t length = str ? std::strlen(str) : 0;
+		outFile.write(reinterpret_cast<const char*>(&length), sizeof(length));
+		if (length > 0) {
+			outFile.write(str, length);
+		}
+		};
+
+	saveString(clg_phone_number);
+	saveString(clg_name);
+	saveString(clg_city);
+	saveString(clg_street);
+}
+
+
+
+
 
 

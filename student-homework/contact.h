@@ -21,4 +21,7 @@ public:
 
     void copy(char*& line, const char* link);
     void show() const;
+
+    void saveToFile(std::ofstream& outFile) const;
+    //void loadFromFile(const std::string& filename);
 };
