@@ -1,5 +1,6 @@
 #include "contact.h"
 #include <iostream>
+#include <fstream>
 
 void Contact::copy(char*& line, const char* link) {
 	delete[] line;
@@ -105,6 +106,27 @@ void Contact::show() const {
 	std::cout << "street:\t\t" << empty(street) << std::endl;
 	std::cout << "house:\t\t" << empty(house) << std::endl;
 	std::cout << "country:\t" << empty(country) << std::endl;
+}
+
+void Contact::saveToFile(std::ofstream& outFile) const {
+	if (!outFile.is_open()) {
+		std::cerr << "Error - file is not open for writing." << std::endl;
+		return;
+	}
+
+	auto saveString = [&outFile](const char* str) {
+		size_t length = str ? std::strlen(str) : 0;
+		outFile.write(reinterpret_cast<const char*>(&length), sizeof(length));
+		if (length > 0) {
+			outFile.write(str, length);
+		}
+		};
+
+	saveString(phone_number);
+	saveString(city);
+	saveString(street);
+	saveString(house);
+	saveString(country);
 }
 
 
